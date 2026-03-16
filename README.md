@@ -55,7 +55,7 @@ Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy
 Execute the following command to run Cellstates (OSX, Linux):
 
 ```bash
-bash ../run_cellstates.sh -t 8 --save-intermediates example_data.tsv
+bash ../run_cellstates.sh -t 4 --save-intermediates example_data.tsv
 ```
 
 Again, we have some command-line options (please see the Cellstates documentation). You can change the number of threads used with the `-t` option. Importantly, one can change the input file that is used by changing the path at the end of the command, i.e., by replacing "example_data.tsv" by a path to your input file. Results are always saved in the sub-directory `cellstates_results`. 
@@ -63,12 +63,12 @@ Again, we have some command-line options (please see the Cellstates documentatio
 If you want to use input data in the `.mtx`-format then the command should look like:
 
 ```bash
-bash ../run_cellstates.sh -t 8 --save-intermediates -g example_data_genes.tsv -c example_data_cellIDs.tsv example_data.mtx"
+bash ../run_cellstates.sh -t 4 --save-intermediates -g example_data_genes.tsv -c example_data_cellIDs.tsv example_data.mtx"
 ```
 
 **For Windows users** instead of .sh scripts run .ps1 scripts:
 ```bash
-..\run_cellstates.ps1 "-t 8 --save-intermediates example_data.tsv"
+..\run_cellstates.ps1 "-t 4 --save-intermediates example_data.tsv"
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
@@ -77,7 +77,7 @@ Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy
 Once Sanity (and optionally Cellstates) are finished, you can execute the following command to run Bonsai (OSX, Linux):
 
 ```bash
-bash ../run_bonsai.sh -n 8
+bash ../run_bonsai.sh -n 4
 ```
 
 In this command, the user can only change the number of threads for the bonsai execution. The input data for Bonsai is taken from the directories `sanity_results` and `cellstates_results` (optional). The Bonsai-results are saved in the directory `bonsai_results`.
@@ -85,7 +85,7 @@ In this command, the user can only change the number of threads for the bonsai e
 
 **For Windows users** instead of .sh scripts run .ps1 scripts:
 ```bash
-..\run_bonsai.ps1 "-n 8"
+..\run_bonsai.ps1 "-n 4"
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
@@ -106,6 +106,8 @@ When you finish your work with the app, please press CTRL-C in the terminal to s
 
 **For WIndows users** instead of .sh scripts run .ps1 scripts:
 ```bash
-..\run_bonsai_scout.ps1 "-n 8"
+..\run_bonsai_scout.ps1
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
+
+We have added directory `example_results` to the repository, which contains the results of running all scripts on the example dataset. If you want to explore the Bonsai-scout app without running all scripts, you can change into the  `example_results`-directory, and then run the `run_bonsai_scout.sh` script.

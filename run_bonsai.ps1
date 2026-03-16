@@ -69,7 +69,7 @@ try {
         docker exec `
             -w /mnt `
             -t $CONTAINER_NAME `
-            bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --tmp_folder /mnt/bonsai_results/premerge_cs --input_is_sanity_output True"
+            bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --tmp_folder /mnt/bonsai_results/premerge_cs --input_is_sanity_output True --pickup_intermediate True"
         
         docker exec `
             -w /mnt `
@@ -82,7 +82,7 @@ try {
         docker exec `
             -w /mnt `
             -t $CONTAINER_NAME `
-            bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --input_is_sanity_output True"
+            bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --input_is_sanity_output True --pickup_intermediate True"
     }
 
     

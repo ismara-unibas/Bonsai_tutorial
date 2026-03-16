@@ -1,5 +1,4 @@
-*/bonsai_results/*
-*/sanity_results/*
-*/cellstates_results/*
-
+test_run/bonsai_results/*
+test_run/sanity_results/*
+test_run/cellstates_results/*
 .DS_Store
