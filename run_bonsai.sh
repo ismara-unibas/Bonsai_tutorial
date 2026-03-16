@@ -61,19 +61,25 @@ echo "Mounted: $INPUT_DIR -> /mnt"
 # start sanity in the container
 echo "Starting bonsai in the container..."
 # config
-docker exec \
-    -w /mnt \
-    -t bonsai \
-    bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 8 --nnn_n_randommoves 1000 --tmp_folder /mnt/bonsai_results/premerge_cs --input_is_sanity_output True"
 
 # CS
 if [ -f "cellstates_results/optimized_clusters.txt" ]; then
+	docker exec \
+	    -w /mnt \
+	    -t bonsai \
+	    bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --tmp_folder /mnt/bonsai_results/premerge_cs --input_is_sanity_output True --pickup_intermediate True"
+
     docker exec \
         -w /mnt \
         -t bonsai \
         bash -c "python /bonsai/optional_preprocessing/create_cellstates_premerged_tree.py --config_filepath /mnt/bonsai_results/bonsai_config.yaml --verbose True --premerged_folder /mnt/bonsai_results/premerge_cs --cellstates_file /mnt/cellstates_results/optimized_clusters.txt"
 else
     echo "Skipping Cellstates premerged tree step: cellstates_results/optimized_clusters.txt not found."
+
+	docker exec \
+	    -w /mnt \
+	    -t bonsai \
+	    bash -c "mkdir -p bonsai_results/premerge_cs && python /bonsai/bonsai/create_config_file.py --new_yaml_path /mnt/bonsai_results/bonsai_config.yaml --dataset 'bonsai_docker' --data_folder /mnt/sanity_results --results_folder /mnt/bonsai_results --nnn_n_randomtrees 4 --nnn_n_randommoves 100 --input_is_sanity_output True --pickup_intermediate True"
 fi
 
 # run bonsai_main with mpi
@@ -87,7 +93,7 @@ docker exec \
 docker exec \
     -w /mnt \
     -t bonsai \
-    bash -c "mkdir -p /mnt/annotation && python /bonsai/bonsai_scout/bonsai_scout_preprocess.py --results_folder /mnt/bonsai_results --annotation_path /mnt/annotation --take_all_genes False"
+    bash -c "mkdir -p /mnt/annotation && rm -rf /mnt/bonsai_results/bonsai_vis* && python /bonsai/bonsai_scout/bonsai_scout_preprocess.py --results_folder /mnt/bonsai_results --annotation_path /mnt/annotation --take_all_genes False"
 
 echo "Bonsai run finished."
 

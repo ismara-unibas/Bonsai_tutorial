@@ -6,7 +6,7 @@ CONTAINER_NAME="bonsai"
 IMAGE_NAME="pachkov/bonsai"
 
 INPUT_DIR="${1:-$PWD}"
-PORT="${2:-8000}"
+PORT="${2:-9000}"
 
 if [[ ! -d "$INPUT_DIR" ]]; then
 	echo "Error: input-dir does not exist: $INPUT_DIR" >&2
@@ -54,7 +54,7 @@ docker exec \
     python3 /bonsai/bonsai_scout/run_bonsai_scout_app.py \
     --results_folder /mnt/bonsai_results \
     --settings_filename /mnt/bonsai_results/bonsai_vis_settings.json \
-    --port 8000
+    --port 9000
 
 echo "Container is running."
 echo "Mounted: $INPUT_DIR -> /mnt"
