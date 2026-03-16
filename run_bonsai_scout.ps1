@@ -2,7 +2,7 @@ param(
     [Alias("input-dir")]
     [string]$InputDir = (Get-Location).Path,
 
-    [int]$Port = 8000
+    [int]$Port = 9000
 )
 
 $ErrorActionPreference = "Stop"
@@ -56,7 +56,7 @@ try {
         python3 /bonsai/bonsai_scout/run_bonsai_scout_app.py `
         --results_folder /mnt/bonsai_results `
         --settings_filename /mnt/bonsai_results/bonsai_vis_settings.json `
-        --port 8000
+        --port 9000
 
     Write-Host "Container is running."
     Write-Host "Mounted: $InputDir -> /mnt"
