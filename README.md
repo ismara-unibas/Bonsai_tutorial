@@ -26,7 +26,7 @@ To illustrate the execution of the scripts, we already created a directory calle
 
 **Note on running methods in parallel:** Currently, it is only possible to run one script at a time. Although in principle, the Sanity- and Cellstates-calculations are independent and could therefore be run simultaneously, this is currently not compatible with running these scripts from the Docker image. If you would like to run these computations simultaneously, please install these tools directly (not using Docker).
 
-#### Running Sanity
+### Running Sanity
 
 Open a terminal (PowerShell on Windows), navigate to the directory for your dataset (in our case the: "Bonsai_tutorial/test_run"-directory), and execute the following command to run sanity (OSX, Linux):
 
@@ -48,7 +48,7 @@ bash ../run_sanity.sh -n 4 -e 1 -max_v 1 -f example_data.mtx -mtx_genes example_
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
-#### Running Cellstates
+### Running Cellstates
 
 **Note: Cellstates is optional.** Running Cellstates is not strictly necessary for reconstructing a Bonsai-tree, but the Cellstates-results can be used to create an initial tree for _Bonsai_'s reconstruction algorithm, and the Cellstates-results may be of interest in their own right. It usually takes some time, however, so it is possible to skip this step. The script `run_bonsai.sh` will automatically detect whether a Cellstates-run was finished, and then determine whether to use these results or not.
 
@@ -72,7 +72,7 @@ bash ../run_cellstates.sh -t 4 --save-intermediates -g example_data_genes.tsv -c
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
-#### Running Bonsai
+### Running Bonsai
 
 Once Sanity (and optionally Cellstates) are finished, you can execute the following command to run Bonsai (OSX, Linux):
 
@@ -89,7 +89,7 @@ In this command, the user can only change the number of threads for the bonsai e
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
-#### Running Bonsai-scout
+### Running Bonsai-scout
 
 Given the Bonsai-results, we can now visualize the tree using Bonsai-scout. Execute the following command to run Bonsai-scout (OSX, Linux):
 
@@ -110,4 +110,6 @@ When you finish your work with the app, please press CTRL-C in the terminal to s
 ```
 Perhaps you need to execute `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted` in the PowerShell before running .ps1 scripts.
 
-We have added directory `example_results` to the repository, which contains the results of running all scripts on the example dataset. If you want to explore the Bonsai-scout app without running all scripts, you can change into the  `example_results`-directory, and then run the `run_bonsai_scout.sh` script.
+### Running Bonsai-scout with pre-computed results
+
+We have added directory `example_results` to the repository, which contains the results of running all the scripts on the example dataset. If you want to explore the Bonsai-scout app without running all steps, you can change into the  `example_results`-directory, and then run the `run_bonsai_scout` script as shown in the previous section.
